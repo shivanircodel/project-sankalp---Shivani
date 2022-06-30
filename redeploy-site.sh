@@ -14,3 +14,6 @@ pip install -r requirements.txt
 tmux
 tmux detach
 flask run --host=0.0.0.0
+
+ls
+sudo restart project-sankalp---Shivani
