@@ -1,3 +1,7 @@
-@app.route('/timeline')
-def timelien():
-    return render_template('timeline.html', title="Timeline")
+if ( 'POST' != $_SERVER['REQUEST_METHOD'] ) {
+	header('Allow: POST');
+	header('HTTP/1.1 204 Method Not Allowed');
+	header('Content-Type: text/html, charset=UTF-8');
+	echo "Only Post";
+	exit;
+}
