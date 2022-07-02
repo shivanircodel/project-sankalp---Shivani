@@ -1,7 +1,5 @@
 #!/bin/bash
 
-tmux kill-server
-
 cd project-sankalp
 
 git fetch
@@ -11,9 +9,8 @@ python -m venv python3-virtualenv
 source python3-virtualenv/bin/activate
 pip install -r requirements.txt
 
-tmux
-tmux detach
-flask run --host=0.0.0.0
-
-ls
-sudo restart project-sankalp---Shivani
+systemctl start myportfolio
+systemctl enable myportfolio
+systemctl daemon-reload
+systemctl restart myportfolio
+systemctl status myportfolio
