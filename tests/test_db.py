@@ -27,7 +27,7 @@ class TestTimelinePost(unittest.TestCase):
 		test_db.close()
 
 	def test_timeline_post(self):
-		# Create 2 timeline posts.
+		# Create 2 timeline posts
 		first_post = TimelinePost.create(name='John Doe', email='john@example.com', content='Hello world, I\'m John!')
 		assert first_post.id == 1
     
