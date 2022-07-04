@@ -3,6 +3,8 @@ from peewee import *
 
 from app import TimelinePost
 
+import tests
+
 MODELS = [TimelinePost]
 
 # use an in-memory SQLite for tests
