@@ -95,3 +95,23 @@ body {
     font-size: 50px;
     font-weight: 700;
 }
+
+li a  {
+    display: block;
+    color: yellow;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: lavender;
+}
+
+li a:hover {
+    background-color: #555;
+    color: white;
+}
