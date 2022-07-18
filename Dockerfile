@@ -1,5 +1,7 @@
 FROM python:3.9-slim-buster
 
+RUN dnf install -y python3.9
+
 WORKDIR /myportfolio
 
 COPY requirements.txt .
