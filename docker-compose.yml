@@ -22,7 +22,16 @@ services:
     - .env
    volumes:
     - mydatabase:/var/lib/mysql
-    
+
+nginx:
+container_name: nginx
+image: jonasal/nginx-certbot
+restart: always
+env_file:
+    - .env
+   volumes:
+    - mydatabase:/var/lib/mysql
+
 nginx:
 container_name: nginx
 image: jonasal/nginx-certbot
