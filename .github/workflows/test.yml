@@ -1,11 +1,11 @@
 name: Run Tests
 on:
-  push: 
-    branches:
-     - main
-  pull_request:
+  push:
     branches:
       - main
+    pull_request:
+      branches:
+        - main
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -15,17 +15,20 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-        
+      
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.6.8'
-          
+          python-version: '3.6.8' # Change to your desired Python version
+      
       - name: Setup Python Virtual Environment
         run: python -m venv python3-virtualenv
         
-      - name: Install Dependencies
+      - name: Install Dependences
         run: python3-virtualenv/bin/pip install -r requirements.txt
+        
+      - name: Grant Permission
+        run: chmod +x run_test.sh
         
       - name: Run Tests
         run: ./run_test.sh
