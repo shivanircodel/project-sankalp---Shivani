@@ -1,5 +1,7 @@
 #!/bin/bash
 
+chmod +x redeploy-site.sh
+
 cd project-sankalp---Shivani
 
 git fetch
