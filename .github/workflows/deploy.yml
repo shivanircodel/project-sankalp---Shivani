@@ -28,9 +28,5 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_IP: ${{ secrets.SSH_IP }}
           
-      - name: Print Project Root Directory
-        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && pwd'
-          
       - name: Enter VPS
         run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod +x redeploy-site.sh &&./redeploy-site.sh'
-
