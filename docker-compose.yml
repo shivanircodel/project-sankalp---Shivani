@@ -24,6 +24,7 @@ services:
     - .env
    volumes:
     - mydatabase:/var/lib/mysql
+   restart: unless-stoppped
 
 volumes:
   mydatabase:
