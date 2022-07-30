@@ -8,6 +8,8 @@ services:
     - .env
    environment:
     - FLASK_ENV=development
+    - SUBDOMAINS=sankalp-portfolio.duckdns.org
+    - TOKEN=045bfa6d-499c-4d6a-b046-763f69a22391
    ports:
     - "5000:5000"
    volumes:
