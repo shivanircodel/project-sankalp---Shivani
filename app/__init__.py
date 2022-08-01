@@ -42,6 +42,10 @@ def index():
     return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
 
 @app.route('/')
+def Home():
+    return render_template('index.html')
+
+@app.route('/About')
 def About_Yourself():
     return render_template('About_Yourself.html')
 
