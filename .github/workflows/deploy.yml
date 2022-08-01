@@ -29,7 +29,7 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
           
       - name: Enter VPS
-        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod +x redeploy-site.sh &&./redeploy-site.sh'
+        run: ssh -v my-vps 'cd ${{ secrets.PROJECT_ROOT }} && mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod +x redeploy-site.sh &&./redeploy-site.sh'
       
       - name: Successful Deployment Notification
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
