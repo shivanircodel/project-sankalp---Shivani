@@ -1,7 +1,7 @@
 version: "3"
 services:
  myportfolio:
-  container_name: myportfolio
+  container_name: project-sankalp---shivani_myportfolio
   build: .
   restart: always
   env_file:
