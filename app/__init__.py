@@ -37,13 +37,9 @@ class TimelinePost(Model):
 mydb.connect()
 mydb.create_tables([TimelinePost])
     
-@app.route('/main')
+@app.route('/')
 def index():
     return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
-
-@app.route('/')
-def Home():
-    return render_template('index.html')
 
 @app.route('/About')
 def About_Yourself():
