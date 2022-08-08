@@ -15,9 +15,9 @@ jobs:
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy-key.pem
-          chmod 700 ~/.ssh/deploy-key.pem
+          chmod 600 ~/.ssh/deploy-key.pem
           cat >> ~/.ssh/config <<END
-          Host my-vm
+          Host my-vps
             HostName $SSH_IP
             User $SSH_USER
             IdentityFile ~/.ssh/deploy-key.pem
@@ -28,8 +28,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_IP: ${{ secrets.SSH_IP }}
           
+      - name: Enter VPS
+        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod +x redeploy-site.sh &&./redeploy-site.sh'
+          
       - name: Print project root directory
         run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && pwd'
-
-      - name: Deploy site
-        run: ssh my-vm 'cd ${{ secrets.PROJECT_ROOT }} && chmod +x redeploy-site.sh && ./redeploy-site.sh'
