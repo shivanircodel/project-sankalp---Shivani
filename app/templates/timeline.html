@@ -6,26 +6,26 @@
 
 {% block content %}
 
-    <h1 style="font-family:georgia;">About Us</h1>
+<h1 style="font-family:georgia;">About Us</h1>
 <nav>
   <ul>
     <li>
-      <a href="About_Yourself.html">About Yourself</a>
+      <a href="/">About Yourself</a>
     </li>
     <li>
-      <a href="Previous_Work_Experience.html">Previous Work Experience</a>
+      <a href="/Experience">Previous Work Experience</a>
     </li>
     <li>
-      <a href="Hobbies.html">Hobbies</a>
+      <a href="/Hobbies">Hobbies</a>
     </li>
     <li>
-        <a href="Education.html">Education</a>
+        <a href="/Education">Education</a>
       </li>
       <li>
-        <a href="Map.html">Map</a>
+        <a href="/Map">Map</a>
       </li>
       <li>
-         <a href="Timeline.html">Timeline</a>
+        <a href="/Timeline">Timeline</a>
       </li>
   </ul>
 </nav>
@@ -33,18 +33,71 @@
 <h1>Timeline</h1>
 
 <body>
-    <h2>Add an Entry</h2>
-    <form action="/register method="post">
-		<label for="name">Name:</label>
-		<input type="text" id="name" name="name"><br><br>
-		<label for="email">Email:</label>
-		<input type="text" id="email" email="name"><br><br>
-		<label for="content">Content:</label>
-		<input type="text" id="content" content="name"><br><br>
-		<input type="submit" value="Submit">
-	  </form>
+<div class="input" >
+    <form id="form">
+
+        <label for="name">name</label>
+        <input id="name" name="name" type="text">
+        <label for="email">email</label>
+        <input id = "email" name="email" type="text">
+        <label for="content">content </label>
+        <input id="content" name="content" type="text">
+        <button class = "submit" type="submit">Submit</button>
+    </form>
+</div>
+ <div id="timeline-posts">0</div>
+    <script>
+        // defines form
+        const form = document.getElementById("form");
+        // defines post
+        const posts = document.getElementById("timeline-posts");
+
+        function getPosts() {
+            // prevent default action from occurring
+            event.preventDefault();
+            // obtain the timeline posts from the website
+            fetch('https://sankalp2.duckdns.org/api/timeline_post').then(response => {
+                // return the response
+                return response.json();
+            }).then(data => {
+                // for each element in the timeline posts
+                for (const element of data.timeline_posts) {
+                    // displays message to the user
+                    console.log(element)
+                    // tells what is between starting and ending tags of elements
+                    posts.innerHTML +=
+                        `<div>
+                        <p>name: ${element.name}</p>
+                        <p>email: ${element.email}</p>
+                        <p>content: ${element.content}</p>
+                    </div>`;
+                }
+            });
+        }
+        
+        // event that occurs before form is submitted to webserver
+        form.onsubmit = (event) => {
+            // prevent default action from occurring
+            event.preventDefault();
+            // get data from form
+            const data = new FormData(form);
+            // fetch data from form
+            fetch('https://sankalp2.duckdns.org/api/timeline_post', {
+                method: 'POST',
+                body: data,
+            }).then(res => {
+                return res.json();
+            }
+            ).then(data => {
+                console.log(data);
+                getPosts();
+            });
+            window.location.reload();
+        };
+        window.onload = getPosts;
+    </script>
+</section>
+
 </body>
-  
-</html>
-    
+
 {% endblock %}
