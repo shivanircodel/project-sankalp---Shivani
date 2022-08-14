@@ -1,3 +1,4 @@
+
 import os, sys
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
@@ -22,6 +23,7 @@ else:
         host=os.getenv("MYSQL_HOST"),
         port=3306
     )
+print(mydb)
     
 regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
@@ -37,11 +39,11 @@ class TimelinePost(Model):
 mydb.connect()
 mydb.create_tables([TimelinePost])
     
-@app.route('/')
+@app.route('/main')
 def index():
     return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
 
-@app.route('/About')
+@app.route('/')
 def About_Yourself():
     return render_template('About_Yourself.html')
 
